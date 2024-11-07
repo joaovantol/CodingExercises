@@ -9,6 +9,10 @@ proper_divisors <- function(n) {
     return(sequence[filter])
 }
 
+is_amicable <- function(a, soma) {
+    return(a == sum(proper_divisors(soma)) & a != soma)
+}
+
 sum_amicable_numbers <- function(limit) {
     numbers <- c()
     sums <- c()
@@ -17,15 +21,12 @@ sum_amicable_numbers <- function(limit) {
         if (!i %in% sums) {
             soma <- sum(proper_divisors(i))
 
-            if (soma > i) {
+            if (soma > i & soma < limit) {
             sums <- c(sums, soma)
             }
 
-            is_amicable <- i == sum(proper_divisors(soma)) & i != soma
-
-            if (is_amicable) {
+            if (is_amicable(i, soma)) {
                 numbers <- c(numbers, soma, i)
-
             }
         } 
     }
@@ -33,4 +34,3 @@ sum_amicable_numbers <- function(limit) {
     return(sum(numbers))
 }
 
-# sum(amicable_numbers(10000))
