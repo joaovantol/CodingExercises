@@ -1,4 +1,4 @@
-even_div <- function(n) {
+evenDiv <- function(n) {
     divs <- 1:n
     i <- 1 
 
@@ -12,4 +12,4 @@ even_div <- function(n) {
     return(i)
 }
 
-even_div(20)
+evenDiv(20)
