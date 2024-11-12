@@ -27,7 +27,9 @@ function getSums(n::Int64)
     i = 1
     while i <= len
         j = i
-        while j <= len
+        maxAbundant = findfirst(x -> x > (n - abundants[i]), abundants) - 1
+
+        while j <= maxAbundant
             sums[i, j] = sum(abundants[[i,j]])
             j = j + 1
         end

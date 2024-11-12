@@ -21,7 +21,12 @@ getSums <- function(n) {
     i <- 1
     while (i <= length(abundants)) {
         j <- i
-        while (j <= length(abundants)) {
+        maxAbundant <- tail(which(abundants <= (n - abundants[i])),1)
+
+        if (length(maxAbundant) == 0) break
+        
+        while (j <= maxAbundant) {
+        # while (j <= length(abundants)) {
             sums[i, j] <- sum(abundants[c(i, j)])
             j <- j + 1
         }
