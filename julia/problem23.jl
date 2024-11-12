@@ -19,7 +19,7 @@ function getAbundantNumbers(n::Int64)
     return abundants
 end
 
-function getSums(n::Int64)
+function getSums(n::Int64=28123)
     abundants = getAbundantNumbers(n)
     len = length(abundants)
     sums = zeros(len, len)

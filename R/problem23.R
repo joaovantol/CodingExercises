@@ -13,7 +13,7 @@ getAbundantNumbers <- function(n) {
     return(abundants)
 }
 
-getSums <- function(n) {
+getSums <- function(n = 28123) {
     abundants <- getAbundantNumbers(n)
     len <- length(abundants)
     sums <- matrix(0, nrow = len, ncol = len)
