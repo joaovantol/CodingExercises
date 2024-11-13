@@ -37,7 +37,6 @@ function getSums(n::Int64=28123)
     end
 
     sums = unique(sums)
-    sums = sums[sums .<= n]
 
     totalSum = sum([1:1:n;])
     return(totalSum - sum(sums))

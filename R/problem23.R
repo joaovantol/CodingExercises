@@ -33,10 +33,8 @@ getSums <- function(n = 28123) {
     }
 
     sums <- unique(as.vector(sums))
-    sums <- sums[sums <= n]
 
     totalSum <- sum(1:n)
 
     return(totalSum - sum(sums))
 }
-
