@@ -13,7 +13,6 @@ function getAbundantNumbers(n::Int64)
             if soma > i
                 abundants = append!(abundants, i)
             end
-
     end
 
     return abundants
@@ -28,7 +27,6 @@ function getSums(n::Int64=28123)
     while i <= len
         j = i
         maxAbundant = findfirst(x -> x > (n - abundants[i]), abundants) - 1
-
         while j <= maxAbundant
             sums[i, j] = sum(abundants[[i,j]])
             j = j + 1
@@ -37,7 +35,7 @@ function getSums(n::Int64=28123)
     end
 
     sums = unique(sums)
-
     totalSum = sum([1:1:n;])
+
     return(totalSum - sum(sums))
 end
