@@ -13,7 +13,8 @@ getAbundantNumbers <- function(n) {
     return(abundants)
 }
 
-getSums <- function(n = 28123) {
+# Solution with matrix
+getSumsMat <- function(n = 28111) {
     abundants <- getAbundantNumbers(n)
     len <- length(abundants)
     sums <- matrix(0, nrow = len, ncol = len)
@@ -22,7 +23,6 @@ getSums <- function(n = 28123) {
     while (i <= length(abundants)) {
         j <- i
         maxAbundant <- tail(which(abundants <= (n - abundants[i])),1)
-
         if (length(maxAbundant) == 0) break
         
         while (j <= maxAbundant) {
@@ -36,4 +36,16 @@ getSums <- function(n = 28123) {
     totalSum <- sum(1:n)
 
     return(totalSum - sum(sums))
+}
+
+# Faster solution with set
+getSumsSet <- function(n= 28111) {
+    abundants <- getAbundantNumbers(n)
+    sums <- c(1:n)
+
+    for (abundant in abundants) {
+        sums <- setdiff(sums, abundants + abundant)
+    }
+
+    return(sum(sums))
 }

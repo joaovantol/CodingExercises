@@ -18,7 +18,8 @@ function getAbundantNumbers(n::Int64)
     return abundants
 end
 
-function getSums(n::Int64=28123)
+# Solution with matrix
+function getSumsMat(n::Int64=28111)
     abundants = getAbundantNumbers(n)
     len = length(abundants)
     sums = zeros(len, len)
@@ -38,4 +39,16 @@ function getSums(n::Int64=28123)
     totalSum = sum([1:1:n;])
 
     return(totalSum - sum(sums))
+end
+
+# Faster solution with set
+function getSumsSet(n::Int64=28111)
+    abundants = getAbundantNumbers(n)
+    sums = Set(1:n)
+
+    for abundant in abundants
+        setdiff!(sums, abundants .+ abundant)
+    end
+
+    return(sum(sums))
 end
