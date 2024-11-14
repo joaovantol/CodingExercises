@@ -19,11 +19,11 @@ nameValue <- function(name) {
 letterValue <- function(letter) which(LETTERS == letter)
 
 totalScore <- function() {
-    list <- readNames()
+    nameList <- readNames()
     score <- 0
 
-    for (i in 1:length(list)) {
-        alphaScore <- nameValue(list[i])
+    for (i in 1:length(nameList)) {
+        alphaScore <- nameValue(nameList[i])
         nameScore <- alphaScore * i
         score <- score + nameScore
     }
