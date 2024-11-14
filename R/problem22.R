@@ -16,9 +16,7 @@ nameValue <- function(name) {
     return(value)
 }
 
-letterValue <- function(letter) {
-    return(which(LETTERS == letter))
-}
+letterValue <- function(letter) which(LETTERS == letter)
 
 totalScore <- function() {
     list <- readNames()

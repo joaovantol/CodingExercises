@@ -48,6 +48,7 @@ function getSumsSet(n::Int64=28111)
 
     for abundant in abundants
         setdiff!(sums, abundants .+ abundant)
+        abundants = abundants[2:length(abundants)]
     end
 
     return(sum(sums))

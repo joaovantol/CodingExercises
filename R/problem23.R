@@ -45,6 +45,7 @@ getSumsSet <- function(n= 28111) {
 
     for (abundant in abundants) {
         sums <- setdiff(sums, abundants + abundant)
+        abundants <- abundants[c(-1)]
     }
 
     return(sum(sums))
