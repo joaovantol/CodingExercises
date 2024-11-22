@@ -1,12 +1,20 @@
 properDivisors <- function(n) {
-    if (n == 1) {
-        return(0)
-    }
+    if (n == 1) return(0)
     
-    sequence <- 1:(n-1)
-    filter <- (n %% sequence) == 0
+    divisors <- c(1)
 
-    return(sequence[filter])
+    if (n == 2) return(divisors)
+
+    for (i in 2:sqrt(n)) {
+        if (n %% i == 0) {
+            divisors <- c(divisors, i)
+            if (i != n / i) {
+                divisors <- c(divisors, n / i)
+            }
+        }
+    }
+
+    return(divisors)
 }
 
 isAmicable <- function(a, b) {

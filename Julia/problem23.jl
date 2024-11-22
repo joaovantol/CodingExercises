@@ -1,8 +1,24 @@
 function properDivisors(n::Int64)
-    sequence = [1:1:n-1;]
-    filter = (n .% sequence .== 0)
+    if n == 1
+        return 0
+    end
 
-    return sequence[filter]
+    divisors = [1]
+
+    if n == 2
+        return divisors
+    end
+
+    for i in 2:sqrt(n)
+        if n % i == 0
+            divisors = append!(divisors, i)
+            if i != n / i
+                divisors = append!(divisors, n / i)
+            end
+        end
+    end
+
+    return divisors
 end
 
 function getAbundantNumbers(n::Int64)
