@@ -1,19 +1,17 @@
-lexicographicOrder <- function(nums = c(0,1,2,3,4,5,6,7,8,9), posit = 1e6) {
-
-    numbers <- sort(nums)
-    len <- length(nums)
-    order <- c()
+nthPermutation <- function(digits = c(0,1,2,3,4,5,6,7,8,9), position = 1e6) {
+    digits <- sort(digits)
+    len <- length(digits)
+    answer <- c()
 
     while (len > 0) {
-        index <- ceiling(posit / (factorial(len) / len))
-        if (index > len) return(
-            "posição n maior do que o número total de permutações")
-        
-        order <- c(order, numbers[index])
-        numbers <- numbers[-c(index)]
-        posit <- posit - (factorial(len) / len * (index - 1))
-        len <- length(numbers)
+        partitionSize <- factorial(len) / len
+        index <- ceiling(position / partitionSize)
+        if (index > len) return("position greater than number of permutations")
+        answer <- c(answer, digits[index])
+        digits <- digits[-c(index)]
+        position <- position - partitionSize * (index - 1)
+        len <- length(digits)
     }
 
-    return(Reduce(paste0, order))
+    return(Reduce(paste0, answer))
 }
