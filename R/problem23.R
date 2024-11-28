@@ -38,7 +38,7 @@ getSumsMat <- function(n = 28111) {
     return(totalSum - sum(sums))
 }
 
-# Faster solution with set
+# Solution with set
 getSumsSet <- function(n = 28111) {
     abundants <- getAbundantNumbers(n)
     sums <- c(1:n)
@@ -51,27 +51,16 @@ getSumsSet <- function(n = 28111) {
     return(sum(sums))
 }
 
-# Solution with boolean
+# Fastest solution with boolean
 getSumsBool <- function(n = 28111) {
     abundants <- getAbundantNumbers(n)
-    len <- length(abundants)
-    sums <- logical(n)
+    mask <- logical(n)
 
-    i <- 1
-    while (i <= length(abundants)) {
-        j <- i
-        maxAbundant <- tail(which(abundants <= (n - abundants[i])),1)
-        if (length(maxAbundant) == 0) break
-        
-        while (j <= maxAbundant) {
-            soma <- sum(abundants[c(i, j)])
-            sums[soma] <- TRUE
-            j <- j + 1
-        }
-        i <- i + 1
+    for (abundant in abundants) {
+        mask[abundants + abundant] <- TRUE
     }
+    print(mask)
+    numbers <- which(mask == FALSE)
 
-    # sums <- sum(which(sums == TRUE))
-
-    return(sum(which(sums == FALSE)))
+    return(sum(numbers))
 }

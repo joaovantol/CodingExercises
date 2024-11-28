@@ -57,7 +57,7 @@ function getSumsMat(n::Int64=28111)
     return(totalSum - sum(sums))
 end
 
-# Faster solution with set
+# Fastest solution with set
 function getSumsSet(n::Int64=28111)
     abundants = getAbundantNumbers(n)
     sums = Set(1:n)
@@ -68,4 +68,20 @@ function getSumsSet(n::Int64=28111)
     end
 
     return(sum(sums))
+end
+
+# Solution with boolean
+function getSumsBool(n::Int64=28111)
+    abundants = getAbundantNumbers(n)
+    mask = falses(2*n)
+
+    for abundant in abundants
+        mask[abundant .+ abundants] .= true
+    end
+    
+    mask = mask[1:n]
+    totalSum = sum([1:1:n;])
+    sumOfTrues = sum(findall(mask))
+
+    return(totalSum - sumOfTrues)
 end
