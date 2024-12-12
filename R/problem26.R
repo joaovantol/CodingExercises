@@ -1,12 +1,12 @@
 getCycleLength <- function(n) {
-    dividend <- 1
-    remainders <- c(1)
+    remainder <- 1
+    remainders <- c(remainder)
 
     repeat {
-        dividend <- (dividend * 10) %% n
-        if (dividend == 0) return(0)
-        if (dividend %in% remainders) break
-        remainders <- c(remainders, dividend)
+        remainder <- (remainder * 10) %% n
+        if (remainder == 0) return(0)
+        if (remainder %in% remainders) break
+        remainders <- c(remainders, remainder)
     }
 
     return(length(remainders))
