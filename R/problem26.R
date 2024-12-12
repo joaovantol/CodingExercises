@@ -9,16 +9,22 @@ getCycleLength <- function(n) {
         remainders <- c(remainders, remainder)
     }
 
-    return(length(remainders))
+    return(length(remainders) - which(remainders == remainder) + 1)
 }
 
-getDwithLongestCycle <- function(d = 1000) {
-    lengths <- c(0)
-    i <- 2
+getDwithLongestCycle <- function(d = 999) {
+    maxLength <- 0
+    i <- d
 
-    while (i < d) {
-        lengths <- c(lengths, getCycleLength(i))
-        i <- i + 1
+    while (i > 1) {
+        if (i < maxLength) break
+        length <- getCycleLength(i)
+        if (length > maxLength) {
+            maxLength <- length
+            answer <- i
+        }
+        i <- i - 1
     }
-    return(which.max(lengths))
+
+    return(answer)
 }
