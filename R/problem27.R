@@ -8,7 +8,7 @@ findCoef <- function() {
 
     for (b in primes[2:length(primes)]) {
         for (a in seq(-b+2, b-2, 2)) {
-            n <- 0
+            n <- 1
             while (checkIfPrime(quadraticForm(n,a,b))) n <- n + 1
             if (n > consecutivePrimes) {
                 consecutivePrimes <- n
@@ -20,4 +20,4 @@ findCoef <- function() {
     return (coef)
 }
 
-prodCoef <- function(a,b) prod(findCoef())
+prodCoef <- function() prod(findCoef())
