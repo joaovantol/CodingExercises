@@ -1,6 +1,11 @@
 sumSpiralDiag <- function(dim) {
-    if (dim%%2 != 1) return("Invalid dimension for a spiral")
-    if (dim == 1) return(1)
+    if (1 == dim) return(1)
+
+    evenSpiral <- FALSE
+    if (1 != dim%%2) {
+        dim <- dim - 1
+        evenSpiral <- TRUE
+    }
 
     nTurns <- (dim - 1) / 2
     soma <- turn <- 1
@@ -13,6 +18,8 @@ sumSpiralDiag <- function(dim) {
         step <- step + 2
         turn <- turn + 1
     }
+
+    if (evenSpiral) soma <- soma + n
 
     return(soma)
 }
