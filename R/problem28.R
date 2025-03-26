@@ -1,6 +1,4 @@
 sumSpiralDiag <- function(dim) {
-    if (1 == dim) return(1)
-
     evenSpiral <- FALSE
     if (1 != dim%%2) {
         dim <- dim - 1
