@@ -27,15 +27,15 @@ optimalStrategy <- function(nSims, nPrisoners, limitDrawers) {
         nSuccess <- 0
         prisoner <- 1
         while (prisoner <= nPrisoners) {
-            drawer <- 1
+            nTry <- 1
             check <- prisoner
-            while (drawer <= limitDrawers) {
+            while (nTry <= limitDrawers) {
                 if (prisoner == drawers[check]) {
                     nSuccess <- nSuccess + 1
                     break
                 } 
                 check <- drawers[check]
-                drawer <- drawer + 1
+                nTry <- nTry + 1
             }
             prisoner <- prisoner + 1
         }
