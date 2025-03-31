@@ -1,4 +1,4 @@
-randomStrategy <- function(nSims, nPrisoners, limitDrawers) {
+randomStrategy <- function(nSims = 5000, nPrisoners = 100, limitDrawers = 50) {
     success <- rep(0, nSims)
     sim <- 1
 
@@ -18,7 +18,7 @@ randomStrategy <- function(nSims, nPrisoners, limitDrawers) {
     return(prob)
 }
 
-optimalStrategy <- function(nSims, nPrisoners, limitDrawers) {
+optimalStrategy <- function(nSims = 5000, nPrisoners = 100, limitDrawers = 50) {
     success <- rep(0, nSims)
     sim <- 1
 
