@@ -5,7 +5,7 @@ require(stringi)
 criptoSquare <- function(string) {
     normalized <- gsub("[[:space:][:punct:]]", "", tolower(string))
     normalized <- stri_trans_general(normalized, "Latin-ASCII")
-    # c <- ceiling(sqrt(nchar(normalized)))
+
     r <- floor(sqrt(nchar(normalized)))
     if (r*r == nchar(normalized)) {
         c <- r
@@ -15,6 +15,7 @@ criptoSquare <- function(string) {
         r <- r + 1
         c <- r
     }
+
     messageLength <- c*r
 
     while (messageLength > nchar(normalized)) {
