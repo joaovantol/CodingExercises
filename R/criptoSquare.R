@@ -1,8 +1,6 @@
-string <- "If man was meant to stay on the ground, god would have given us roots."
-string <- "Essa frase é muito aleatória e feita apenas de brincadeira para testar este exercício, tá ligado?"
 require(stringi)
 
-criptoSquare <- function(string) {
+cryptoSquare <- function(string) {
     normalized <- gsub("[[:space:][:punct:]]", "", tolower(string))
     normalized <- stri_trans_general(normalized, "Latin-ASCII")
 
@@ -38,3 +36,7 @@ criptoSquare <- function(string) {
 
     return(paste(finalCode, collapse = " "))
 }
+
+cryptoSquare("If man was meant to stay on the ground, god would have given us roots.")
+cryptoSquare("Essa frase é bem aleatória, feita apenas de brincadeira para testar este exercício")
+
