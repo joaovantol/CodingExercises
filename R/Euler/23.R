@@ -59,7 +59,7 @@ getSumsBool <- function(n = 28111) {
     for (abundant in abundants) {
         mask[abundants + abundant] <- TRUE
     }
-    print(mask)
+
     numbers <- which(mask == FALSE)
 
     return(sum(numbers))
