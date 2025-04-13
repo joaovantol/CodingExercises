@@ -1,4 +1,4 @@
-source("./R/problem20.R", encoding = "UTF-8")
+source("./R/Euler/20.R", encoding = "UTF-8")
 
 require(gmp)
 

@@ -1,4 +1,4 @@
-source("./R/problem21.R", encoding = "UTF-8")
+source("./R/Euler/21.R", encoding = "UTF-8")
 
 getAbundantNumbers <- function(n) {
     abundants <- c()

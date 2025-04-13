@@ -1,4 +1,4 @@
-source("./R/problem7.R", encoding = "UTF-8")
+source("./R/Euler/07.R", encoding = "UTF-8")
 
 quadraticForm <- function(n, a, b) n^2 + a*n + b
 
