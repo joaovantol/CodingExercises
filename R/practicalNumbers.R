@@ -18,12 +18,12 @@ isPracticalNumber <- function(n) {
     return(out)
 }
 
-sumOfPracticalNumbers <- function(n = 10000) {
+sumOfPracticals <- function(n = 10000) {
     result <- 0
 
     i <- 1
     while (i <= n) {
-        if (isPracticalNumber(i) == TRUE) {
+        if (isPracticalNumber(i)) {
             result <- result + i
         }
         i <- i + 1
