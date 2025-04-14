@@ -1,1 +1,1 @@
-# Euler-Project
+# Coding Exercises
