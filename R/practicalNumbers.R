@@ -21,10 +21,12 @@ isPracticalNumber <- function(n) {
 sumOfPracticalNumbers <- function(n = 10000) {
     result <- 0
 
-    for (i in 1:n) {
+    i <- 1
+    while (i <= n) {
         if (isPracticalNumber(i) == TRUE) {
             result <- result + i
         }
+        i <- i + 1
     }
 
     return(result)
