@@ -3,8 +3,7 @@ isLuhnValid <- function(string) {
     if (1 == nchar(string)) return("invalid input")
 
     chars <- unlist(strsplit(string, ""))
-    if (!all(chars %in% c("1","2","3","4","5","6","7","8","9","0"))) 
-        return("invalid input")
+    if (!all(grepl("^[0-9]$", chars))) return("invalid input")
 
     digits <- as.numeric(chars)
     index <- rev(seq(length(digits)-1, 1, -2))
