@@ -1,6 +1,6 @@
 isLuhnValid <- function(string) {
     string <- gsub(" ", "", string)
-    if (1 == nchar(string)) return("invalid input")
+    if (1 >= nchar(string)) return("invalid input")
 
     chars <- unlist(strsplit(string, ""))
     if (!all(grepl("^[0-9]$", chars))) return("invalid input")

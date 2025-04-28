@@ -1,7 +1,7 @@
 def isLuhnValid(string):
     string = string.replace(" ", "")
     
-    if len(string) == 1:
+    if 1 >= len(string):
         return "invalid input"
     if not all(x.isdigit() for x in string):
         return "invalid input"
@@ -9,7 +9,6 @@ def isLuhnValid(string):
     digits = [int(x) for x in string]
     
     for i in range(len(digits) - 2, -1, -2):
-        print(i)
         doubled = digits[i] * 2
         if doubled > 9:
             doubled -= 9
