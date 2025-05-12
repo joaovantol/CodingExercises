@@ -10,8 +10,7 @@ def maxThrill(atms):
               thrill += abs(i-j)
             if thrill > maxThrill:
                 maxThrill = thrill
-                atmIndex[0] = i
-                atmIndex[1] = j
+                atmIndex = [i, j]
 
     return maxThrill, atmIndex
 
