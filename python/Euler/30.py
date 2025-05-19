@@ -1,19 +1,22 @@
-# Quinta potência dos dígitos de 0 a 9
-fifth_powers = {str(d): d**5 for d in range(10)}
+def powersSum(power):
+    powers = {str(digit): digit**power for digit in range(10)}
 
-# Estimar um limite superior: 
-# 6 dígitos: 6 * 9^5 = 354294 (a partir de 7 dígitos, o número mínimo já ultrapassa a soma possível)
-upper_limit = 6 * (9 ** 5)
+    digits = 1
+    minValue = 10**(digits-1)
+    maxSum = powers["9"]
 
-# Inicializar a lista de números que satisfazem a condição
-valid_numbers = []
+    while minValue < maxSum:
+        digits += 1
+        minValue = 10**(digits-1)
+        maxSum = powers["9"]*digits
 
-# Testar números de 10 até o limite estimado
-for num in range(10, upper_limit + 1):
-    digit_sum = sum(fifth_powers[d] for d in str(num))
-    if num == digit_sum:
-        valid_numbers.append(num)
+    maxValue = (digits-1)*powers["9"]
 
-# Exibir os resultados
-print("Números encontrados:", valid_numbers)
-print("Soma dos números:", sum(valid_numbers))
+    validNumbers = []
+
+    for num in range(10, maxValue + 1):
+        powersSum = sum(powers[digit] for digit in str(num))
+        if num == powersSum:
+            validNumbers.append(num)
+
+    return validNumbers, sum(validNumbers)
