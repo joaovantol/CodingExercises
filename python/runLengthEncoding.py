@@ -26,13 +26,13 @@ def runLengthEncoding(string):
 def runLengthDecoding(string):
     decoded = []
 
-    parts = re.findall(r'(\d*)([A-Za-z])', string)
+    parts = re.findall(r"(\d*)([A-Za-z])", string)
 
     for count, char in parts:
         repeat = int(count) if count else 1
         decoded.append(char * repeat)
 
-    return ''.join(decoded)
+    return "".join(decoded)
 
 
 runLengthEncoding("AABCCCDEEEE")
