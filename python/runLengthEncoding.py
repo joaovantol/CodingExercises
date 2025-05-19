@@ -1,34 +1,32 @@
-def run_length_encode(data):
-    if not data:
-        return ""
+import re
+
+def runLengthEncoding(string):
+    string = string.replace(" ","")
 
     encoded = []
     count = 1
 
-    for i in range(1, len(data)):
-        if data[i] == data[i - 1]:
+    for i in range(0, len(string)-1):
+        if string[i] == string[i + 1]:
             count += 1
         else:
             if count == 1:
-                encoded.append(data[i - 1])
+                encoded.append(string[i])
             else:
-                encoded.append(f"{count}{data[i - 1]}")
+                encoded.append(f"{count}{string[i]}")
             count = 1
 
-    # handle the last run
     if count == 1:
-        encoded.append(data[-1])
+        encoded.append(string[-1])
     else:
-        encoded.append(f"{count}{data[-1]}")
+        encoded.append(f"{count}{string[-1]}")
 
-    return ''.join(encoded)
+    return "".join(encoded)
 
-import re
-
-def run_length_decode(data):
+def runLengthDecoding(string):
     decoded = []
-    # Find all (optional number)(letter/whitespace) groups
-    parts = re.findall(r'(\d*)([A-Za-z\s])', data)
+
+    parts = re.findall(r'(\d*)([A-Za-z\s])', string)
 
     for count, char in parts:
         repeat = int(count) if count else 1
@@ -36,10 +34,9 @@ def run_length_decode(data):
 
     return ''.join(decoded)
 
-original = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
-encoded = run_length_encode(original)
-decoded = run_length_decode(encoded)
 
-print("Original:", original)
-print("Encoded :", encoded)
-print("Decoded :", decoded)
+runLengthEncoding("AABCCCDEEEE")
+runLengthDecoding(runLengthEncoding("AABCCCDEEEE"))
+
+runLengthEncoding("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB")
+runLengthDecoding(runLengthEncoding("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"))
