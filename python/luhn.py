@@ -24,5 +24,3 @@ isLuhnValid("16")
 isLuhnValid("26")
 isLuhnValid("026")
 isLuhnValid("326")
-
-"oajhc"
