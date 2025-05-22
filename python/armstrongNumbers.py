@@ -7,4 +7,3 @@ isArmstrong(9)
 isArmstrong(10)
 isArmstrong(153)
 isArmstrong(154)
-"hahdkja"
