@@ -24,9 +24,22 @@ def mineCounter(board):
     return countedBoard
 
 
-board = [" * * ",
+board1 = [" * * ",
          "  *  ",
          "  *  ",
          "     "]
+mineCounter(board1)
 
-mineCounter(board)
+board2 = [" * *    * ",
+          "  *      *",
+          "        **",
+          "     *   *",
+          "    **    ",
+          "          ",
+          "    *   **",
+          "   *      ",
+          " *        ",
+          "     * *  "]
+mineCounter(board2)
+for line in mineCounter(board2):
+    print(line)
