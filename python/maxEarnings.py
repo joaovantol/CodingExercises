@@ -4,16 +4,20 @@ def maxEarnings(earnings, k):
     cumEarnings[0][0] = 0
 
     for day in range(1, n + 1):
-        cumEarnings[day][0] = max(cumEarnings[day - 1])
+        for consecutive in range(k + 1):
+            if consecutive == 0:
+                bestPrevious = max(cumEarnings[day - 1])
+                cumEarnings[day][0] = bestPrevious
+            else:
+                if cumEarnings[day - 1][consecutive - 1] > -1:
+                    val = cumEarnings[day - 1][consecutive - 1] + earnings[day - 1]
+                    cumEarnings[day][consecutive] = val
 
-        for i in range(1, k + 1):
-            if cumEarnings[day - 1][i - 1] >= 0:
-                cumEarnings[day][i] = cumEarnings[day - 1][i - 1] + earnings[day - 1]
+    maxEarning = max(cumEarnings[n])
 
-    return max(cumEarnings[n])
-
-
+    return maxEarning
 
 maxEarnings([60, 70, 80, 40, 80, 90, 100, 20], 3)
 maxEarnings([45, 12, 78, 34, 56, 89, 23, 67, 91], 4)
 maxEarnings([12, 45, 56, 34, 78, 89, 23, 67, 91], 4)
+
