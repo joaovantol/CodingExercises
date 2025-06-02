@@ -3,11 +3,11 @@ def newtonSqrt(number):
         return 0
 
     x = 1
-    while True:
-        xNew = (x + number / x) / 2
-        if abs(x - xNew) < 1e-3:
-            break
+    xNew = (x + number / x) / 2
+    
+    while abs(x - xNew) > 1e-3:
         x = xNew
+        xNew = (x + number / x) / 2
 
     return int(x) 
 
