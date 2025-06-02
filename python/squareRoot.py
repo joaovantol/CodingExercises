@@ -2,14 +2,14 @@ def newtonSqrt(number):
     if number == 0:
         return 0
 
-    guess = number
+    x = 1
     while True:
-        nextGuess = (guess + number / guess) / 2
-        if abs(guess - nextGuess) < 1e-10:
+        xNew = (x + number / x) / 2
+        if abs(x - xNew) < 1e-3:
             break
-        guess = nextGuess
+        x = xNew
 
-    return int(guess) 
+    return int(x) 
 
 def binSqrt(number):
     if number < 2:
