@@ -2,8 +2,7 @@ def saddlePoints(grid):
     if not grid:
         raise ValueError("Empty grid")
     
-    rowLengths = set([len(row) for row in grid])
-    if len(rowLengths) != 1:
+    if len(set([len(row) for row in grid])) != 1:
         raise ValueError("Irregular grid")
     
     cols = list(zip(*grid))
