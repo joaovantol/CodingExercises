@@ -7,17 +7,16 @@ def saddlePoints(grid):
         raise ValueError("Irregular grid")
     
     cols = list(zip(*grid))
-    saddlePoints = set()
+    saddlePoints = []
     
     for rowIndex, row in enumerate(grid):
         for colIndex, value in enumerate(row):
             if (value == max(row) and value == min(cols[colIndex])):
-                saddlePoints.add((rowIndex, colIndex))
+                saddlePoints.append((rowIndex, colIndex))
     
     return saddlePoints
 
-grid = [
-]
+
 
 
 saddlePoints([]) # Empty grid
@@ -32,16 +31,16 @@ saddlePoints(
     [[9, 8, 7, 8],
      [5, 3, 2, 4],
      [6, 6, 7, 1]]
-) # {(1, 0)}
+) # [(1, 0)]
 
 saddlePoints(
     [[9, 8, 7, 8],
      [7, 3, 2, 4],
      [6, 6, 7, 1]]
-) # No good trees
+) # No saddle point
 
 saddlePoints(
     [[9, 8, 7, 8],
      [4, 3, 2, 4],
      [6, 6, 7, 5]]
-) # {(1, 0), (1, 3)}
+) # [(1, 0), (1, 3)]
