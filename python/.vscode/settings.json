@@ -1,8 +1,13 @@
 {
-  "python.testing.pytestArgs": ["-v", "tests"],
+  "python.testing.pytestArgs": [
+    "-vv",
+    "tests"
+  ],
   "python.testing.unittestEnabled": false,
   "python.testing.pytestEnabled": true,
-  "python.analysis.extraPaths": ["./src"],
+  "python.analysis.extraPaths": [
+    "./src"
+  ],
   "python.defaultInterpreterPath": ".venv/bin/python",
   "editor.formatOnSave": true,
   "notebook.formatOnSave.enabled": true,
