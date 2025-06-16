@@ -9,6 +9,7 @@
     "./src"
   ],
   "python.defaultInterpreterPath": ".venv/bin/python",
+  "python.radon.executable": ".venv/bin/radon",
   "editor.formatOnSave": true,
   "notebook.formatOnSave.enabled": true,
   "notebook.codeActionsOnSave": {

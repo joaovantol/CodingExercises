@@ -2,13 +2,10 @@
 name = "codingexercises"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "joaovantol",email = "joaovantol@gmail.com"}
-]
+authors = [{ name = "joaovantol", email = "joaovantol@gmail.com" }]
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-]
+dependencies = []
 
 
 [build-system]
@@ -17,4 +14,25 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.4.0"
+pytest-profiling = "^1.8.1"
+pytest-cov = "^6.2.1"
+snakeviz = "^2.2.2"
+mypy = "^1.16.1"
+radon = "5.1"
 
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib", "-ra", "-q", "-p", "profiling"]
+pythonpath = "./src"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.mypy]
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+mypy_path = ["src"]
+
+[tool.ruff]
+extend-include = ["*.ipynb"]
