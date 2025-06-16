@@ -1,4 +1,4 @@
-def spiralMatrix(dim):
+def spiralMatrix(dim: int) -> list[list[int]]:
     matrix = [[0] * dim for _ in range(dim)]
     row, col, drow, dcol = 0, 0, 0, 1
 
