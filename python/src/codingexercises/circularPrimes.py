@@ -1,4 +1,4 @@
-def generatePrimeList(n: int) -> list[list[int]]:
+def generatePrimeList(n: int) -> list[int]:
     """
     Generate all prime numbers up to n using the Sieve of Eratosthenes.
 
@@ -30,7 +30,6 @@ def countCircularPrimes(limit: int) -> int:
     Returns:
         int: Count of circular primes below the limit
     """
-    # Generate all primes below the limit using the sieve
     primes = set(generatePrimeList(limit - 1))
     circularPrimes = set()
 
@@ -38,11 +37,9 @@ def countCircularPrimes(limit: int) -> int:
         if prime in circularPrimes:
             continue
 
-        # Convert prime to string to check rotations
         s = str(prime)
         rotations = {int(s[i:] + s[:i]) for i in range(len(s))}
 
-        # Check if all rotations are prime
         if all(rot in primes for rot in rotations):
             circularPrimes.update(rotations)
 
