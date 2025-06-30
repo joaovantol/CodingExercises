@@ -88,7 +88,7 @@ class ZebraPuzzle:
                                     'orange_juice': orange_juice,
                                     'water': water
                                 },
-                                'smokes': {
+                                'activities': {
                                     'dancer': dancer,
                                     'painter': painter,
                                     'reader': reader,
