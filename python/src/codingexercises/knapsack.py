@@ -13,15 +13,11 @@ def maximumValue(maximumWeight: int, items: list[dict]) -> int:
     dp = [0] * (maximumWeight + 1)
 
     for item in items:
-        print(item)
-        weight = item["weight"]
-        value = item["value"]
+        weight, value = item["weight"], item["value"]
 
         for w in range(maximumWeight, weight - 1, -1):
-            print("w=",w)
             if dp[w - weight] + value > dp[w]:
                 dp[w] = dp[w - weight] + value
-            print(dp)
 
     return dp[maximumWeight]
 
@@ -41,5 +37,5 @@ def maximumValueComb(maximumWeight: int, items: list[dict]) -> int:
     for item in items:
         combinations += [[w + item["weight"], v + item["value"]]
                          for w, v in combinations]
-    print(combinations)
+
     return max(v for w, v in combinations if w <= maximumWeight)
