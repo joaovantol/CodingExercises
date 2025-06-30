@@ -2,7 +2,7 @@ from itertools import permutations
 
 class ZebraPuzzle:
     def __init__(self) -> None:
-        self.solution = None
+        self.solution: (None | dict[str, dict[str, int]]) = None
 
     def solve(self) -> bool:
         # Clue 1: There are five houses
