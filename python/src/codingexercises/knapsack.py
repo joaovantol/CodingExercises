@@ -1,4 +1,4 @@
-def maximum_value(maximum_weight, items):
+def maximum_value(maximum_weight: int, items: dict) -> int:
     # Initialize a 1D DP array where dp[w] represents the maximum value for weight w
     dp = [0] * (maximum_weight + 1)
 
