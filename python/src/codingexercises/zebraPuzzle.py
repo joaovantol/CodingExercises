@@ -131,18 +131,18 @@ class ZebraPuzzle:
         return None
 
 
-if __name__ == "__main__":
-    puzzle = ZebraPuzzle()
-    if puzzle.solve():
-        print("Solution found:")
-        print(f"The {puzzle.drinksWater()} drinks water.")
-        print(f"The {puzzle.ownsZebra()} owns the zebra.")
+# if __name__ == "__main__":
+#     puzzle = ZebraPuzzle()
+#     if puzzle.solve():
+#         print("Solution found:")
+#         print(f"The {puzzle.drinksWater()} drinks water.")
+#         print(f"The {puzzle.ownsZebra()} owns the zebra.")
 
-        # Print full solution
-        print("\nFull solution:")
-        for category, items in puzzle.solution.items():
-            print(f"\n{category.capitalize()}:")
-            for item, house in items.items():
-                print(f"  {item}: House {house}")
-    else:
-        print("No solution found.")
+#         # Print full solution
+#         print("\nFull solution:")
+#         for category, items in puzzle.solution.items():
+#             print(f"\n{category.capitalize()}:")
+#             for item, house in items.items():
+#                 print(f"  {item}: House {house}")
+#     else:
+#         print("No solution found.")

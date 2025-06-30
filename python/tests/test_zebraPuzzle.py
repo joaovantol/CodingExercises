@@ -3,15 +3,17 @@ from codingexercises.zebraPuzzle import ZebraPuzzle
 
 def test_who_drinks_water() -> None:
     puzzle = ZebraPuzzle()
+    puzzle.solve()
 
     assert puzzle.drinksWater() == "norwegian"
 
 def test_who_owns_zebra() -> None:
     puzzle = ZebraPuzzle()
+    puzzle.solve()
 
     assert puzzle.ownsZebra() == "japanese"
 
 def test_solution_exists() -> None:
-    puzzle = ZebraPuzzle
+    puzzle = ZebraPuzzle()
 
     assert puzzle.solve() == True
