@@ -5,6 +5,7 @@ class ZebraPuzzle:
         self.solution = None
 
     def solve(self) -> bool:
+        # Clue 1: There are five houses
         houses = [1, 2, 3, 4, 5]
 
         # a) Generate permutations for colors and check the only color clue
@@ -102,25 +103,31 @@ class ZebraPuzzle:
                                     'zebra': zebra
                                 }
                             }
+
                             return True
+
         return False
 
     def drinksWater(self) -> (str | None):
         if not self.solution:
             return None
+
         water_house = self.solution['drinks']['water']
         for nationality, house in self.solution['nationalities'].items():
             if house == water_house:
                 return nationality
+
         return None
 
     def ownsZebra(self) -> (str | None):
         if not self.solution:
             return None
+
         zebra_house = self.solution['pets']['zebra']
         for nationality, house in self.solution['nationalities'].items():
             if house == zebra_house:
                 return nationality
+
         return None
 
 
