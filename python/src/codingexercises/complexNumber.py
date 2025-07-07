@@ -17,7 +17,7 @@ class ComplexNumber:
         self.real = real
         self.imaginary = imaginary
 
-    def __eq__(self, other: Any) -> Any:
+    def __eq__(self, other: Any) -> bool:
         """
         Check equality between two complex numbers.
 
