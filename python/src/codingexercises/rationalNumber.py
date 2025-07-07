@@ -154,7 +154,7 @@ class Rational:
         """
         return Rational(abs(self.numerator), abs(self.denominator))
 
-    def __pow__(self, power: int) -> Any:
+    def __pow__(self, power: (int | float)) -> Any:
         """Raise this Rational to an integer power.
 
         Args:
@@ -164,7 +164,7 @@ class Rational:
             Rational: The result of exponentiation as a new Rational
             NotImplemented: If power is not an integer
         """
-        if not isinstance(power, int):
+        if not isinstance(power, (int, float)):
             return NotImplemented
         if power == 0:
             return Rational(1)
@@ -174,7 +174,7 @@ class Rational:
             return Rational(self.denominator ** abs(power),
                            self.numerator ** abs(power))
 
-    def __rpow__(self, base: Any) -> Any:
+    def __rpow__(self, base: (int | float)) -> Any:
         """Raise a number to the power of this Rational (for float exponentiation).
 
         Implements the operation: base ** (self.numerator/self.denominator)
@@ -189,81 +189,3 @@ class Rational:
         if not isinstance(base, (int, float)):
             return NotImplemented
         return base ** (self.numerator / self.denominator)
-
-    # Comparison operators
-    def __lt__(self, other: Any) -> bool:
-        """Check if this Rational is less than another Rational.
-
-        Args:
-            other: The Rational to compare with
-
-        Returns:
-            bool: True if this Rational is less than other
-            NotImplemented: If other is not a Rational
-        """
-        if not isinstance(other, Rational):
-            return NotImplemented
-        return (self.numerator * other.denominator <
-                other.numerator * self.denominator)
-
-    def __le__(self, other: Any) -> bool:
-        """Check if this Rational is less than or equal to another Rational.
-
-        Args:
-            other: The Rational to compare with
-
-        Returns:
-            bool: True if this Rational is less than or equal to other
-            NotImplemented: If other is not a Rational
-        """
-        if not isinstance(other, Rational):
-            return NotImplemented
-        return (self.numerator * other.denominator <=
-                other.numerator * self.denominator)
-
-    def __gt__(self, other: Any) -> bool:
-        """Check if this Rational is greater than another Rational.
-
-        Args:
-            other: The Rational to compare with
-
-        Returns:
-            bool: True if this Rational is greater than other
-            NotImplemented: If other is not a Rational
-        """
-        if not isinstance(other, Rational):
-            return NotImplemented
-        return (self.numerator * other.denominator >
-                other.numerator * self.denominator)
-
-    def __ge__(self, other: Any) -> bool:
-        """Check if this Rational is greater than or equal to another Rational.
-
-        Args:
-            other: The Rational to compare with
-
-        Returns:
-            bool: True if this Rational is greater than or equal to other
-            NotImplemented: If other is not a Rational
-        """
-        if not isinstance(other, Rational):
-            return NotImplemented
-        return (self.numerator * other.denominator >=
-                other.numerator * self.denominator)
-
-    # Unary operators
-    def __pos__(self) -> Any:
-        """Return this Rational with positive sign (unary + operator).
-
-        Returns:
-            Rational: The same Rational (since it's already in reduced form)
-        """
-        return Rational(+self.numerator, self.denominator)
-
-    def __neg__(self) -> Any:
-        """Return the negation of this Rational (unary - operator).
-
-        Returns:
-            Rational: A new Rational with negated numerator
-        """
-        return Rational(-self.numerator, self.denominator)
