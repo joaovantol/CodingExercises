@@ -1,4 +1,4 @@
-import math
+from math import sqrt, exp, cos, sin
 from typing import Any
 
 class ComplexNumber:
@@ -7,7 +7,7 @@ class ComplexNumber:
     Supports basic arithmetic operations and common complex number functions.
     """
 
-    def __init__(self, real: float, imaginary:float) -> None:
+    def __init__(self, real: int | float, imaginary: int | float) -> None:
         """
         Initialize a complex number with given real and imaginary parts.
 
@@ -40,7 +40,7 @@ class ComplexNumber:
         """
         return f"{self.real}{self.imaginary:+}i"
 
-    def __add__(self, other: Any) -> Any:
+    def __add__(self, other: Any) -> "ComplexNumber":
         """
         Add two complex numbers or a complex number with a real number.
 
@@ -57,13 +57,13 @@ class ComplexNumber:
         else:
             return NotImplemented
 
-    def __radd__(self, other: Any) -> Any:
+    def __radd__(self, other: Any) -> "ComplexNumber":
         """
         Handle reflected addition for cases like real + complex.
         """
         return self.__add__(other)
 
-    def __sub__(self, other: Any) -> Any:
+    def __sub__(self, other: Any) -> "ComplexNumber":
         """
         Subtract two complex numbers or a real number from a complex number.
 
@@ -80,7 +80,7 @@ class ComplexNumber:
         else:
             return NotImplemented
 
-    def __rsub__(self, other: Any) -> Any:
+    def __rsub__(self, other: Any) -> "ComplexNumber":
         """
         Handle reflected subtraction for cases like real - complex.
         """
@@ -89,7 +89,7 @@ class ComplexNumber:
         else:
             return NotImplemented
 
-    def __mul__(self, other: Any) -> Any:
+    def __mul__(self, other: Any) -> "ComplexNumber":
         """
         Multiply two complex numbers or a complex number with a real number.
 
@@ -109,13 +109,13 @@ class ComplexNumber:
         else:
             return NotImplemented
 
-    def __rmul__(self, other: Any) -> Any:
+    def __rmul__(self, other: Any) -> "ComplexNumber":
         """
         Handle reflected multiplication for cases like real * complex.
         """
         return self.__mul__(other)
 
-    def __truediv__(self, other: Any) -> Any:
+    def __truediv__(self, other: Any) -> "ComplexNumber":
         """
         Divide two complex numbers or a complex number by a real number.
 
@@ -136,7 +136,7 @@ class ComplexNumber:
         else:
             return NotImplemented
 
-    def __rtruediv__(self, other: Any) -> Any:
+    def __rtruediv__(self, other: Any) -> "ComplexNumber":
         """
         Handle reflected division for cases like real / complex.
         """
@@ -155,9 +155,9 @@ class ComplexNumber:
 
         :return: The magnitude as a float
         """
-        return math.sqrt(self.real**2 + self.imaginary**2)
+        return sqrt(self.real**2 + self.imaginary**2)
 
-    def conjugate(self) -> Any:
+    def conjugate(self) -> "ComplexNumber":
         """
         Return the complex conjugate of the number.
 
@@ -165,14 +165,14 @@ class ComplexNumber:
         """
         return ComplexNumber(self.real, -self.imaginary)
 
-    def exp(self) -> Any:
+    def exp(self) -> "ComplexNumber":
         """
         Calculate the exponential of the complex number (e^z).
 
         :return: New complex number representing e^z
         """
-        exp_real = math.exp(self.real)
+        exp_real = exp(self.real)
         return ComplexNumber(
-            exp_real * math.cos(self.imaginary),
-            exp_real * math.sin(self.imaginary)
+            exp_real * cos(self.imaginary),
+            exp_real * sin(self.imaginary)
         )
