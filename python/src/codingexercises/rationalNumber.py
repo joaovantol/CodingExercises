@@ -174,7 +174,7 @@ class Rational:
             return Rational(self.denominator ** abs(power),
                            self.numerator ** abs(power))
 
-    def __rpow__(self, base: Any) -> float:
+    def __rpow__(self, base: Any) -> Any:
         """Raise a number to the power of this Rational (for float exponentiation).
 
         Implements the operation: base ** (self.numerator/self.denominator)
