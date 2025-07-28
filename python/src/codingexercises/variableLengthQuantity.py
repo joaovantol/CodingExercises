@@ -20,12 +20,12 @@ def convertToBaseN(number: int, base: int) -> list[int]:
     if not number:
         return [0]
 
-    digits = []
+    values = []
     while number > 0:
-        digits.append(number%base)
+        values.append(number%base)
         number = number//base
 
-    return digits[::-1]
+    return values[::-1]
 
 def encode(numbers: list[int]) -> list[int]:
     """
