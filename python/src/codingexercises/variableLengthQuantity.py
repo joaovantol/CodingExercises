@@ -17,7 +17,7 @@ def convertToBaseN(number: int, base: int) -> list[int]:
         >>> to_base_n(0xFF, 128)
         [1, 127]
     """
-    if number == 0:
+    if not number:
         return [0]
 
     digits = []
@@ -31,9 +31,10 @@ def encode(numbers: list[int]) -> list[int]:
     """
     Encode a list of numbers into a VLQ byte sequence.
 
-    Variable Length Quantity (VLQ) is a method for storing integers in a variable number of bytes.
-    Each byte uses the 7 least significant bits for the value and the most significant bit as a
-    continuation flag (1 if more bytes follow, 0 if this is the last byte).
+    Variable Length Quantity (VLQ) is a method for storing integers in a
+    variable number of bytes. Each byte uses the 7 least significant bits for
+    the value and the most significant bit as a continuation flag (1 if more
+    bytes follow, 0 if this is the last byte).
 
     Args:
         numbers: List of integers to be encoded.
@@ -51,7 +52,7 @@ def encode(numbers: list[int]) -> list[int]:
 
     for n in numbers:
         base128 = convertToBaseN(n, 128)
-        encoded += [a + 128 for a in base128[:-1]] + [base128[-1]]
+        encoded += [byte_ + 128 for byte_ in base128[:-1]] + [base128[-1]]
 
     return encoded
 
@@ -66,7 +67,8 @@ def decode(bytes_: list[int]) -> list[int]:
         List of decoded integers.
 
     Raises:
-        ValueError: If the input ends with an incomplete sequence (continuation bit set on last byte).
+        ValueError: If the input ends with an incomplete sequence (continuation
+        bit set on last byte).
 
     Examples:
         >>> decode([0x7F])
@@ -74,17 +76,17 @@ def decode(bytes_: list[int]) -> list[int]:
         >>> decode([0x81, 0x80, 0x00])
         [16384]
     """
-    out = []
+    decoded = []
     number = 0
 
     for byte in bytes_:
         number *= 128
         number += (byte%128)
         if byte < 128:
-            out.append(number)
+            decoded.append(number)
             number = 0
 
-    if number > 0 or len(out) == 0:
+    if number > 0 or 0 == len(decoded):
         raise ValueError("incomplete sequence")
 
-    return out
+    return decoded
