@@ -1,4 +1,33 @@
-def encode(numbers: list) -> list:
+def convertToBaseN(number: int, base: int) -> list[int]:
+    """
+    Convert a decimal number to a specified base representation.
+
+    Args:
+        number: The positive integer to convert (must be >= 0)
+        base: The target base
+
+    Returns:
+        A list representation of the number in the specified base
+
+    Examples:
+        >>> to_base_n(5, 2)
+        [1, 0, 1]
+        >>> to_base_n(255, 128)
+        [1, 127]
+        >>> to_base_n(0xFF, 128)
+        [1, 127]
+    """
+    if number == 0:
+        return [0]
+
+    digits = []
+    while number > 0:
+        digits.append(number%base)
+        number = number//base
+
+    return digits[::-1]
+
+def encode(numbers: list[int]) -> list[int]:
     """
     Encode a list of numbers into a VLQ byte sequence.
 
@@ -13,36 +42,20 @@ def encode(numbers: list) -> list:
         List of bytes representing the VLQ encoded numbers.
 
     Examples:
-        >>> encode([0x7f])
+        >>> encode([0x7F])
         [127]
         >>> encode([0x4000])
         [129, 128, 0]
     """
-    encoded_bytes = []
-    for number in numbers:
-        # Handle 0 case immediately
-        if number == 0:
-            encoded_bytes.append(0)
-            continue
+    encoded = []
 
-        # Process each 7-bit chunk
-        chunks = []
-        while number > 0:
-            chunk = number & 0x7f  # Get the least significant 7 bits
-            number >>= 7           # Right shift by 7 bits
-            chunks.append(chunk)
+    for n in numbers:
+        base128 = convertToBaseN(n, 128)
+        encoded += [a + 128 for a in base128[:-1]] + [base128[-1]]
 
-        # Set the continuation bit on all chunks except the last one
-        for i in range(len(chunks) - 1):
-            chunks[i] |= 0x80
+    return encoded
 
-        # Add chunks in little-endian order (least significant byte first)
-        encoded_bytes.extend(reversed(chunks))
-
-    return encoded_bytes
-
-
-def decode(bytes_: list) -> list:
+def decode(bytes_: list[int]) -> list[int]:
     """
     Decode a VLQ byte sequence into a list of numbers.
 
@@ -56,25 +69,22 @@ def decode(bytes_: list) -> list:
         ValueError: If the input ends with an incomplete sequence (continuation bit set on last byte).
 
     Examples:
-        >>> decode([0x7f])
+        >>> decode([0x7F])
         [127]
         >>> decode([0x81, 0x80, 0x00])
         [16384]
     """
-    numbers = []
-    current_number = 0
+    out = []
+    number = 0
 
     for byte in bytes_:
-        # Add the 7 bits to the current number
-        current_number = (current_number << 7) | (byte & 0x7f)
+        number *= 128
+        number += (byte%128)
+        if byte < 128:
+            out.append(number)
+            number = 0
 
-        # Check if this is the last byte of the number
-        if not (byte & 0x80):
-            numbers.append(current_number)
-            current_number = 0
-
-    # If we have a remaining current_number, the input was incomplete
-    if current_number != 0:
+    if number > 0 or len(out) == 0:
         raise ValueError("incomplete sequence")
 
-    return numbers
+    return out
