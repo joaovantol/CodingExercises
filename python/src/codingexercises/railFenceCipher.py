@@ -20,7 +20,7 @@ def encode(plain_text: str, rails: int) -> str:
         return plain_text
 
     # Create a list of rails, each rail is a list of characters
-    rail_strings: list[list] = [[] for _ in range(rails)]
+    rail_strings: list[list[str]] = [[] for _ in range(rails)]
     current_rail = 0
     direction = 1  # 1 for down, -1 for up
 
@@ -33,7 +33,7 @@ def encode(plain_text: str, rails: int) -> str:
             direction *= -1
 
     # Concatenate all rails to form the cipher text
-    cipher_text = ''.join([''.join(rail) for rail in rail_strings])
+    cipher_text = "".join(["".join(rail) for rail in rail_strings])
 
     return cipher_text
 
@@ -61,7 +61,7 @@ def decode(cipher_text: str, rails: int) -> str:
         return cipher_text
 
     # Create a list to represent the rail pattern
-    pattern = []
+    pattern: list[int] = []
     current_rail = 0
     direction = 1
 
@@ -74,14 +74,14 @@ def decode(cipher_text: str, rails: int) -> str:
             direction *= -1
 
     # Now, split the cipher text into rails based on the pattern
-    rail_indices: list[list] = [[] for _ in range(rails)]
+    rail_indices: list[list[int]] = [[] for _ in range(rails)]
 
     # For each rail, collect the indices where it occurs in the pattern
     for index, rail in enumerate(pattern):
         rail_indices[rail].append(index)
 
     # Reconstruct the original plain text
-    plain_text = [''] * len(cipher_text)
+    plain_text = [""] * len(cipher_text)
     pos = 0
 
     for rail in range(rails):
@@ -89,4 +89,4 @@ def decode(cipher_text: str, rails: int) -> str:
             plain_text[index] = cipher_text[pos]
             pos += 1
 
-    return ''.join(plain_text)
+    return "".join(plain_text)

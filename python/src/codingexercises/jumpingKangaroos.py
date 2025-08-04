@@ -1,5 +1,9 @@
-def kangaroo(kanga1: float, speed1: float,
-             kanga2: float, speed2: float) -> bool:
+def kangaroo(
+    kanga1: float,
+    speed1: float,
+    kanga2: float,
+    speed2: float,
+) -> bool:
     """
     Determine if two kangaroos will meet at the same position at the same time.
 
