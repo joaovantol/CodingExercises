@@ -1,6 +1,4 @@
-from typing import List, Tuple
-
-def neighbors(board: List[List[int]], i: int, j: int) -> List[Tuple[int, int]]:
+def neighbors(board: list[list[int]], i: int, j: int) -> list[tuple[int, int]]:
     """
     Get all valid neighboring positions (including diagonals) for a given cell.
 
@@ -10,7 +8,7 @@ def neighbors(board: List[List[int]], i: int, j: int) -> List[Tuple[int, int]]:
         j: Column index of the cell
 
     Returns:
-        List of valid (row, col) neighbor positions within board bounds
+        list of valid (row, col) neighbor positions within board bounds
     """
     n = len(board)
     all_neighbors = [
@@ -20,7 +18,7 @@ def neighbors(board: List[List[int]], i: int, j: int) -> List[Tuple[int, int]]:
     ]
     return [(x, y) for (x, y) in all_neighbors if 0 <= x < n and 0 <= y < n]
 
-def tick(board: List[List[int]]) -> List[List[int]]:
+def tick(board: list[list[int]]) -> list[list[int]]:
     """
     Compute the next generation of the Game of Life.
 
@@ -35,14 +33,12 @@ def tick(board: List[List[int]]) -> List[List[int]]:
 
     for i in range(n):
         for j in range(n):
-            # Count live neighbors
             live_count = sum(1 for x, y in neighbors(board, i, j) if board[x][y] == 1)
 
-            # Apply Conway's rules
-            if board[i][j] == 1:  # Currently alive
+            if board[i][j] == 1:
                 if live_count == 2 or live_count == 3:
                     new_board[i][j] = 1
-            else:  # Currently dead
+            else:
                 if live_count == 3:
                     new_board[i][j] = 1
 
