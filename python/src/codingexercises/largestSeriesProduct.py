@@ -18,8 +18,8 @@ def largest_product(series: str, size: int) -> int:
         ValueError: If the input contains non-digit characters or if size is
         invalid.
     """
-    if 0 == size:
-        return 1
+    if not size:
+        raise ValueError("span must not be zero")
     if 0 > size:
         raise ValueError("span must not be negative")
     if size > len(series):
@@ -29,9 +29,6 @@ def largest_product(series: str, size: int) -> int:
 
     nums = [int(digit) for digit in series]
     slices: list[list[int]] = [nums[i : i + size] for i in range(len(nums) - size + 1)]
-    products: list[int] = []
+    products = np.prod(slices, axis=1)
 
-    for slice in slices:
-        products.append(int(np.prod(slice)))
-
-    return max(products)
+    return int(max(products))
