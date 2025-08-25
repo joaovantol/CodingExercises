@@ -4,7 +4,7 @@
 
 import unittest
 
-from codingexercises.goCounting import Board
+from codingexercises.goCounting import BLACK, NONE, WHITE, Board
 
 
 class GoCountingTest(unittest.TestCase):
