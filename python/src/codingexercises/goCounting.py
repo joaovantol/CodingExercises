@@ -63,8 +63,7 @@ class Board:
 
         if len(stones) == 1 and len(territory) > 0:
             return (stones.pop(), territory)
-        else:
-            return (NONE, territory)
+        return (NONE, territory)
 
     def territories(self) -> dict[str, set[Any] | None]:
         """
