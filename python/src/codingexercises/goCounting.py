@@ -10,14 +10,40 @@ DELTAS = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
 
 class Board:
+    """
+    A class representing a go board.
+    Supports territory counting operations.
+    """
+
     def __init__(self, board: list[str]) -> None:
         self.rows = board
         self.columns = list(zip(*board))
 
     def onboard(self, x: int, y: int) -> bool:
+        """
+        Check if the the a pair (x, y) representing a row and a column exists
+        on the board.
+
+        Args:
+            x: The row number.
+            y: The column number.
+
+        Returns:
+            Boolean.
+        """
         return 0 <= x < len(self.columns) and 0 <= y < len(self.rows)
 
     def territory(self, x: int, y: int) -> tuple[Any, set[Any]]:
+        """
+        Calculates the territory surrounding a given pair of coordinates.
+
+        Args:
+            x: The row number.
+            y: The column number.
+
+        Returns:
+            A tuple containing a territory belonging to black, white or none.
+        """
         if not self.onboard(x, y):
             raise ValueError("Invalid coordinate")
 
@@ -41,11 +67,18 @@ class Board:
             return (NONE, territory)
 
     def territories(self) -> dict[str, set[Any] | None]:
-        territories = defaultdict(set)
+        """
+        Calculates all territories in a go board.
+
+        Returns:
+            A dictionary containing all territories belonging to black, white
+            and none.
+        """
+        territories: tuple[str, set[tuple[Any]]] = defaultdict(set)
 
         for x, y in product(range(0, len(self.columns)), range(0, len(self.rows))):
             stone, territory = self.territory(x, y)
-            territories[stone] |= territory
+            territories[stone].add(territory)
 
         return {
             stone: territories.get(stone) if territories.get(stone) else set()

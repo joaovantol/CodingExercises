@@ -1,7 +1,3 @@
-# These tests are auto-generated with test data from:
-# https://github.com/exercism/problem-specifications/tree/main/exercises/go-counting/canonical-data.json
-# File last updated on 2023-07-19
-
 import unittest
 
 from codingexercises.goCounting import BLACK, NONE, WHITE, Board
