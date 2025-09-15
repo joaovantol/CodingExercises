@@ -74,11 +74,11 @@ class Board:
             A dictionary containing all territories belonging to black, white
             and none.
         """
-        territories: tuple[str, set[tuple[Any]]] = defaultdict(set)
+        territories: defaultdict[str, set[Any]] = defaultdict(set)
 
         for x, y in product(range(0, len(self.columns)), range(0, len(self.rows))):
             stone, territory = self.territory(x, y)
-            territories[stone].add(territory)
+            territories[stone] |= territory
 
         return {
             stone: territories.get(stone) if territories.get(stone) else set()
