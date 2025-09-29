@@ -1,50 +1,46 @@
-from json import dumps
 from typing import Any, Optional
 
 
 class Tree:
-    def __init__(self, label: str, children: Optional[list["Tree"]] = None) -> None:
-        self.label = label
-        self.children = children or []
+    def __init__(self, name: str, children: Optional[list["Tree"]] = None) -> None:
+        self.name = name
+        self.children = children if children is not None else []
 
     def __dict__(self) -> dict[Any, list[Any]]:
-        return {self.label: [c.__dict__() for c in sorted(self.children)]}
+        return {self.name: [child.__dict__() for child in sorted(self.children)]}
 
-    def __str__(self, indent: None = None) -> str:
-        return dumps(self.__dict__(), indent=indent)
-
-    def __lt__(self, other: "True") -> bool:
-        return self.label < other.label
+    def __lt__(self, other: "Tree") -> bool:
+        return self.name < other.name
 
     def __eq__(self, other: "Tree") -> bool:
         return self.__dict__() == other.__dict__()
 
     def from_pov(self, from_node: str) -> "Tree":
-        path = self.path_down(from_node)
+        path = self.child_path(from_node)
         if not path:
             raise ValueError("Tree could not be reoriented")
         for parent, child in zip(path, path[1:]):
-            parent.swap_with_child(child)
+            parent.swap(child)
 
         return path[-1]
 
-    def path_to(self, from_node: str, to_node: str) -> list[str]:
-        root = self.from_pov(from_node)
-        path = root.path_down(to_node)
-        if not path:
-            raise ValueError("No path found")
-        return [node.label for node in path]
-
-    def path_down(self, to_node: str) -> list["Tree"]:
-        if self.label == to_node:
+    def child_path(self, to_node: str) -> list["Tree"]:
+        if self.name == to_node:
             return [self]
 
-        for c in self.children:
-            path = c.path_down(to_node)
+        for child in self.children:
+            path = child.child_path(to_node)
             if path:
                 return [self] + path
         return []
 
-    def swap_with_child(self, other: "Tree") -> None:
+    def swap(self, other: "Tree") -> None:
         self.children.remove(other)
         other.children.append(self)
+
+    def path_to(self, from_node: str, to_node: str) -> list[str]:
+        root = self.from_pov(from_node)
+        path = root.child_path(to_node)
+        if not path:
+            raise ValueError("No path found")
+        return [node.name for node in path]
