@@ -6,14 +6,16 @@ class Tree:
         self.name = name
         self.children = children if children is not None else []
 
-    def __dict__(self) -> dict[Any, list[Any]]:
-        return {self.name: [child.__dict__() for child in sorted(self.children)]}
+    def to_dict(self) -> dict[str, list[Any]]:
+        return {self.name: [child.to_dict() for child in sorted(self.children)]}
 
     def __lt__(self, other: "Tree") -> bool:
         return self.name < other.name
 
-    def __eq__(self, other: "Tree") -> bool:
-        return self.__dict__() == other.__dict__()
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Tree):
+            return NotImplemented
+        return self.to_dict() == other.to_dict()
 
     def from_pov(self, from_node: str) -> "Tree":
         path = self.child_path(from_node)
