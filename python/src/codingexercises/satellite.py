@@ -15,7 +15,7 @@ def tree_from_traversals(
         check_warnings (bool): whether to check the consistency or not
 
     Returns:
-        dict: A dictionary containing the tree
+        A dictionary containing the tree
     """
     if check_warnings:
         check(preorder, inorder)
