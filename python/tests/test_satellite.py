@@ -1,13 +1,15 @@
+from typing import Any
+
 from pytest import raises
 
 from codingexercises.satellite import tree_from_traversals
 
 
 def test_empty_tree() -> None:
-    preorder = []
-    inorder = []
+    preorder: list[str] = []
+    inorder: list[str] = []
 
-    expected = {}
+    expected: dict[str, Any] = {}
     assert tree_from_traversals(preorder, inorder) == expected
 
 
@@ -15,7 +17,7 @@ def test_tree_with_one_item() -> None:
     preorder = ["a"]
     inorder = ["a"]
 
-    expected = {"v": "a", "l": {}, "r": {}}
+    expected: dict[str, Any] = {"v": "a", "l": {}, "r": {}}
     assert tree_from_traversals(preorder, inorder) == expected
 
 
@@ -23,7 +25,7 @@ def test_tree_with_many_items() -> None:
     preorder = ["a", "i", "x", "f", "r"]
     inorder = ["i", "a", "f", "x", "r"]
 
-    expected = {
+    expected: dict[str, Any] = {
         "v": "a",
         "l": {"v": "i", "l": {}, "r": {}},
         "r": {
