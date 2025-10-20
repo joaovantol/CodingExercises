@@ -3,8 +3,7 @@ import math
 
 def expansion_pascal_row(n: int) -> list[int]:
     """
-    Calculates the nth row of a Pascal triangle using coefficients in the
-    binomial expansion.
+    Calculates the nth row of Pascal's triangle using binomial coefficients.
 
     Args:
         n (int): The number of row to calculate
@@ -20,7 +19,7 @@ def expansion_pascal_row(n: int) -> list[int]:
 
 def iterative_pascal_row(n: int) -> list[int]:
     """
-    Iteratively calculates the nth row of a Pascal triangle.
+    Calculates the nth row of Pascal's triangle using iteration.
 
     Args:
         n (int): The number of row to calculate
@@ -43,7 +42,7 @@ def recursive_pascal_row(
     row: list[int] = [1],
 ) -> list[int]:
     """
-    Recursively calculates the nth row of a Pascal triangle.
+    Calculates the nth row of Pascal's triangle using recursion.
 
     Args:
         n (int): The number of row to calculate
@@ -65,7 +64,7 @@ def recursive_pascal_row(
 
 def dp_pascal_row(n: int) -> list[int]:
     """
-    Calculates the nth row of a Pascal triangle using dynamic programming.
+    Calculates the nth row of Pascal's triangle using dynamic programming.
 
     Args:
         n (int): The number of row to calculate
@@ -77,6 +76,7 @@ def dp_pascal_row(n: int) -> list[int]:
         raise ValueError("n must be a positive integer")
 
     triangle = [[1] * i for i in range(1, n + 1)]
+
     for i in range(2, n):
         for j in range(1, i):
             triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j]
