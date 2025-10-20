@@ -1,12 +1,13 @@
 import math
+from functools import reduce
 
 
-def expansion_pascal_row(n: int) -> list[int]:
+def pascal_row_bincoef(n: int) -> list[int]:
     """
     Calculates the nth row of Pascal's triangle using binomial coefficients.
 
     Args:
-        n (int): The number of row to calculate
+        n (int): The number of the row to calculate
 
     Returns:
         A list containing the nth row.
@@ -17,12 +18,12 @@ def expansion_pascal_row(n: int) -> list[int]:
     return [math.comb(n - 1, k) for k in range(n)]
 
 
-def iterative_pascal_row(n: int) -> list[int]:
+def pascal_row_iterative(n: int) -> list[int]:
     """
     Calculates the nth row of Pascal's triangle using iteration.
 
     Args:
-        n (int): The number of row to calculate
+        n (int): The number of the row to calculate
 
     Returns:
         A list containing the nth row.
@@ -37,7 +38,28 @@ def iterative_pascal_row(n: int) -> list[int]:
     return row
 
 
-def recursive_pascal_row(
+def pascal_row_reduce(n: int) -> list[int]:
+    """
+    Calculates the nth row of Pascal's triangle using reduce and a lambda
+    function.
+
+    Args:
+        n (int): The number of the row to calculate
+
+    Returns:
+        A list containing the nth row.
+    """
+    if n < 1:
+        raise ValueError("n must be a positive integer")
+
+    return reduce(
+        lambda row, _: [x + y for x, y in zip([0] + row, row + [0])],
+        range(n - 1),
+        [1],
+    )
+
+
+def pascal_row_recursive(
     n: int,
     row: list[int] = [1],
 ) -> list[int]:
@@ -45,7 +67,7 @@ def recursive_pascal_row(
     Calculates the nth row of Pascal's triangle using recursion.
 
     Args:
-        n (int): The number of row to calculate
+        n (int): The number of the row to calculate
 
     Returns:
         A list containing the nth row.
@@ -56,18 +78,18 @@ def recursive_pascal_row(
     if n == 1:
         return row
 
-    return recursive_pascal_row(
+    return pascal_row_recursive(
         n - 1,
         [x + y for x, y in zip([0] + row, row + [0])],
     )
 
 
-def dp_pascal_row(n: int) -> list[int]:
+def pascal_row_dp(n: int) -> list[int]:
     """
     Calculates the nth row of Pascal's triangle using dynamic programming.
 
     Args:
-        n (int): The number of row to calculate
+        n (int): The number of the row to calculate
 
     Returns:
         A list containing the nth row.
