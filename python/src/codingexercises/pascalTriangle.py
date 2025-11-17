@@ -16,6 +16,7 @@ def pascal_row_bincoef(n: int) -> list[list[int]]:
         raise ValueError("n must be a positive integer")
 
     triangle = [[1]]
+
     for row_num in range(2, n + 1):
         triangle.append([math.comb(row_num - 1, k) for k in range(row_num)])
 
@@ -36,8 +37,11 @@ def pascal_row_iterative(n: int) -> list[list[int]]:
         raise ValueError("n must be a positive integer")
 
     triangle = [[1]]
+
     for _ in range(n - 1):
-        triangle.append([x + y for x, y in zip([0] + triangle[-1], triangle[-1] + [0])])
+        triangle.append(
+            [x + y for x, y in zip([0] + triangle[-1], triangle[-1] + [0])],
+        )
 
     return triangle
 
@@ -57,6 +61,7 @@ def pascal_row_reduce(n: int) -> list[list[int]]:
         raise ValueError("n must be a positive integer")
 
     triangle = [[1]]
+
     for row_num in range(2, n + 1):
         triangle.append(
             reduce(
@@ -111,7 +116,7 @@ def pascal_row_dp(n: int) -> list[list[int]]:
         n (int): The number of the row to calculate
 
     Returns:
-        A list containing the nth row.
+        A list containing the Pascal triangle up to nth row.
     """
     if n < 1:
         raise ValueError("n must be a positive integer")
