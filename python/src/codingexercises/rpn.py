@@ -94,6 +94,16 @@ class RPNCalculator:
             return False
 
     def divisionTruncToZero(self, operand1: float, operand2: float) -> int:
+        """
+        Apply a division between two operands and truncate the result toward zero.
+
+        Args:
+            operand1: The first operand
+            operand2: The second operand
+
+        Returns:
+            int: The result of the operation
+        """
         return int(operand1 / operand2)
 
     def _apply_operator(self, operator: str, operand1: float, operand2: float) -> Any:
