@@ -9,22 +9,22 @@ def minimumCostDP(cost: list[int]) -> int:
     Returns:
     The minimum cost to climb the staircase.
     """
-    n = len(cost)
+    size = len(cost)
 
-    if n == 1:
+    if size == 1:
         return cost[0]
 
-    if n == 2:
+    if size == 2:
         return min(cost[0], cost[1])
 
-    dp = [0] * n
+    dp = [0] * size
     dp[0] = cost[0]
     dp[1] = cost[1]
 
-    for i in range(2, n):
+    for i in range(2, size):
         dp[i] = cost[i] + min(dp[i - 1], dp[i - 2])
 
-    return min(dp[n - 1], dp[n - 2])
+    return min(dp[size - 1], dp[size - 2])
 
 
 def optimizedMinimumCostDP(cost: list[int]) -> int:
@@ -38,18 +38,18 @@ def optimizedMinimumCostDP(cost: list[int]) -> int:
     Returns:
     The minimum cost to climb the staircase.
     """
-    n = len(cost)
+    size = len(cost)
 
-    if n == 1:
+    if size == 1:
         return cost[0]
 
-    if n == 2:
+    if size == 2:
         return min(cost[0], cost[1])
 
     prev2 = cost[0]
     prev1 = cost[1]
 
-    for i in range(2, n):
+    for i in range(2, size):
         curr = cost[i] + min(prev1, prev2)
         prev2 = prev1
         prev1 = curr
