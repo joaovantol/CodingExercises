@@ -17,6 +17,9 @@ TEST_CASES = [
 TEST_ERROR_CASES = [
     (-1, "recursion", "n must be non-negative", "test_9"),
     (-1, "dp", "n must be non-negative", "test_10"),
+    (4, "recursão", "invalid method", "test_11"),
+    (5, "DP", "invalid method", "test_12"),
+    (6, "", "invalid method", "test_13"),
 ]
 
 
