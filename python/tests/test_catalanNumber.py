@@ -1,3 +1,5 @@
+from typing import Literal
+
 import pytest
 from pytest import raises
 
@@ -23,9 +25,12 @@ TEST_ERROR_CASES = [
 ]
 
 
-@pytest.mark.parametrize("n,method,expected_result,test_name", TEST_CASES)
+@pytest.mark.parametrize("n,method,expected_nth_catalan,test_name", TEST_CASES)
 def test_nth_catalan(
-    n: int, method: str, expected_nth_catalan: int, test_name: str
+    n: int,
+    method: Literal["recursion", "dp"],
+    expected_nth_catalan: int,
+    test_name: str,
 ) -> None:
     """Test findCatalan function with test cases."""
     result = findCatalan(n, method)
@@ -37,7 +42,7 @@ def test_nth_catalan(
 
 @pytest.mark.parametrize("n,method,expected_error,test_name", TEST_ERROR_CASES)
 def test_nth_catalan_error(
-    n: int, method: str, expected_error: int, test_name: str
+    n: int, method: Literal["recursion", "dp"], expected_error: int, test_name: str
 ) -> None:
     """Test findCatalan function with error test cases."""
     with raises(ValueError, match=expected_error):

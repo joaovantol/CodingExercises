@@ -1,4 +1,7 @@
-def findCatalan(n: int, method: str) -> int:
+from typing import Literal
+
+
+def findCatalan(n: int, method: Literal["recursion", "dp"]) -> int:
     """
     This function calculates the nth Catalan number.
 
